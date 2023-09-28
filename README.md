@@ -1,2 +1,2 @@
 # DesignPatterns
-I'm learning design patterns
+trying to learn design patterns
