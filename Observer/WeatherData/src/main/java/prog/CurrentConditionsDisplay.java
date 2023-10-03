@@ -5,9 +5,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
     float temperature;
     float humidity;
     float pressure;
-    Subject subject;
+    WeatherData subject;
 
-    public CurrentConditionsDisplay(Subject subject) {
+    public CurrentConditionsDisplay(WeatherData subject) {
         this.subject = subject;
         subject.registerObserver(this);
     }
@@ -23,10 +23,10 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update(float temperature, float humidity, float pressure) {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.pressure = pressure;
+    public void update() {
+        this.temperature = subject.getTemperature();
+        this.humidity = subject.getHumidity();
+        this.pressure = subject.getPressure();
         display();
     }
 }
