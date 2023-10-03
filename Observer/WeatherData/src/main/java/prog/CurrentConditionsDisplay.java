@@ -1,13 +1,12 @@
 package prog;
 
-
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
     float temperature;
     float humidity;
     float pressure;
-    WeatherData subject;
+    Subject subject;
 
-    public CurrentConditionsDisplay(WeatherData subject) {
+    public CurrentConditionsDisplay(Subject subject) {
         this.subject = subject;
         subject.registerObserver(this);
     }
@@ -23,10 +22,10 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
     }
 
     @Override
-    public void update() {
-        this.temperature = subject.getTemperature();
-        this.humidity = subject.getHumidity();
-        this.pressure = subject.getPressure();
+    public void update(float temperature, float humidity, float pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
         display();
     }
 }

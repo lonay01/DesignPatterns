@@ -8,6 +8,7 @@ public class Main {
 
         Observer observer1 = new CurrentConditionsDisplay(subject);
         Observer observer2 = new StaticsticsDisplay(subject);
+        Observer observer3 = new HeatIndexDisplay(subject);
 
         System.out.println("-----------------------------");
         subject.setAll(15,100,320);

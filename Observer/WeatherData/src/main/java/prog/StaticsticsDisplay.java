@@ -8,13 +8,13 @@ public class StaticsticsDisplay implements Observer, DisplayElement{
     float avgTemperature;
     float avgHumidity;
     float avgPressure;
-    WeatherData subject;
+    Subject subject;
 
     List<Float> listTemperature;
     List<Float> listHumidity;
     List<Float> listPressure;
 
-    public StaticsticsDisplay(WeatherData subject) {
+    public StaticsticsDisplay(Subject subject) {
         this.subject = subject;
         subject.registerObserver(this);
         listHumidity = new ArrayList<>();
@@ -25,7 +25,7 @@ public class StaticsticsDisplay implements Observer, DisplayElement{
 
     @Override
     public void display() {
-        System.out.println("CurrentConditionsDisplay{" +
+        System.out.println("StaticsticsDisplay{" +
                 "avgTemperature=" + listTemperature.stream().mapToDouble(a -> a).average().getAsDouble() +
                 ", AvgHumidity=" + listHumidity.stream().mapToDouble(a -> a).average().getAsDouble() +
                 ", avgPressure=" + listPressure.stream().mapToDouble(a -> a).average().getAsDouble() +
@@ -33,10 +33,10 @@ public class StaticsticsDisplay implements Observer, DisplayElement{
     }
 
     @Override
-    public void update() {
-        listHumidity.add(subject.getHumidity());
-        listPressure.add(subject.getPressure());
-        listTemperature.add(subject.getTemperature());
+    public void update(float temperature, float humidity, float pressure) {
+        listHumidity.add(humidity);
+        listPressure.add(pressure);
+        listTemperature.add(temperature);
 
         display();
     }
